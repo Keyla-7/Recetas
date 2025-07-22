@@ -1,74 +1,67 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mis Recetas 💕</title>
-
-  <!-- Fuentes -->
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet" />
-
-  <!-- Aquí incluís tu CSS -->
-  <link rel="stylesheet" href="estilos.css" />
-  <!-- O el CSS dentro de <style> sin duplicados -->
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mis Recetas 💕</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="estilos.css" />
 </head>
 <body>
-  <h1>Mis Recetas Favoritas 💖</h1>
+  <h1>Mis Recetas Favoritas 💖</h1>
 
-  <div class="categoria">
-    <h2>🍲 Comidas</h2>
-    <div class="recetas-container" id="lista-comidas"></div>
-    <button class="agregar-btn" data-categoria="comidas">➕ Agregar receta</button>
-  </div>
+  <div class="categoria">
+    <h2>🍲 Comidas</h2>
+    <div class="recetas-container" id="lista-comidas"></div>
+    <button class="agregar-btn" data-categoria="comidas">➕ Agregar receta</button>
+  </div>
 
-  <div class="categoria">
-    <h2>🍰 Postres</h2>
-    <div class="recetas-container" id="lista-postres"></div>
-    <button class="agregar-btn" data-categoria="postres">➕ Agregar receta</button>
-  </div>
+  <div class="categoria">
+    <h2>🍰 Postres</h2>
+    <div class="recetas-container" id="lista-postres"></div>
+    <button class="agregar-btn" data-categoria="postres">➕ Agregar receta</button>
+  </div>
 
-  <div class="categoria">
-    <h2>🍹 Bebidas</h2>
-    <div class="recetas-container" id="lista-bebidas"></div>
-    <button class="agregar-btn" data-categoria="bebidas">➕ Agregar receta</button>
-  </div>
+  <div class="categoria">
+    <h2>🍹 Bebidas</h2>
+    <div class="recetas-container" id="lista-bebidas"></div>
+    <button class="agregar-btn" data-categoria="bebidas">➕ Agregar receta</button>
+  </div>
 
-  <div class="detalle-receta" id="detalle-receta">
-    <button class="eliminar-btn" id="eliminar-receta">🗑️</button>
-    <h2 id="detalle-nombre"></h2>
-    <p><strong>⏱️ Tiempo:</strong> <span id="detalle-tiempo"></span></p>
-    <h3>Ingredientes:</h3>
-    <ul id="detalle-ingredientes"></ul>
-    <h3>Paso a paso:</h3>
-    <ul id="detalle-pasos"></ul>
-    <button class="editar-btn" id="editar-receta">📝 Editar</button>
-    <button class="volver-btn" id="volver-btn">🔙 Volver</button>
-  </div>
+  <div class="detalle-receta" id="detalle-receta">
+    <button class="eliminar-btn" id="eliminar-receta">🗑️</button>
+    <h2 id="detalle-nombre"></h2>
+    <p><strong>⏱️ Tiempo:</strong> <span id="detalle-tiempo"></span></p>
+    <h3>Ingredientes:</h3>
+    <ul id="detalle-ingredientes"></ul>
+    <h3>Paso a paso:</h3>
+    <ul id="detalle-pasos"></ul>
+    <button class="editar-btn" id="editar-receta">📝 Editar</button>
+    <button class="volver-btn" id="volver-btn">🔙 Volver</button>
+  </div>
 
-  <div class="formulario-container" id="formulario-container" style="display: none;">
-    <h2 id="formulario-titulo">Agregar receta</h2>
-    <form id="form-receta">
-      <input type="hidden" id="form-id" />
-      <label>Nombre:</label>
-      <input type="text" id="form-nombre" required />
-      <label>Tiempo:</label>
-      <input type="text" id="form-tiempo" required />
-      <label>Ingredientes (separados por coma):</label>
-      <textarea id="form-ingredientes" required></textarea>
-      <label>Pasos (separados por punto y coma):</label>
-      <textarea id="form-pasos" required></textarea>
-      <input type="hidden" id="form-categoria" />
-      <button type="submit" class="guardar-btn">💾 Guardar</button>
-      <button type="button" class="cancelar-btn" id="cancelar-btn">❌ Cancelar</button>
-    </form>
-  </div>
+  <div class="formulario-container" id="formulario-container" style="display: none;">
+    <h2 id="formulario-titulo">Agregar receta</h2>
+    <form id="form-receta">
+      <input type="hidden" id="form-id" />
+      <label>Nombre:</label>
+      <input type="text" id="form-nombre" required />
+      <label>Tiempo:</label>
+      <input type="text" id="form-tiempo" required />
+      <label>Ingredientes (separados por coma):</label>
+      <textarea id="form-ingredientes" required></textarea>
+      <label>Pasos (separados por punto y coma):</label>
+      <textarea id="form-pasos" required></textarea>
+      <input type="hidden" id="form-categoria" />
+      <button type="submit" class="guardar-btn">💾 Guardar</button>
+      <button type="button" class="cancelar-btn" id="cancelar-btn">❌ Cancelar</button>
+    </form>
+  </div>
 
-  <!-- Aquí va tu script JS -->
-  <script>
-    // ... (tu JS igual que antes, no hay cambios en JS)
-  </script>
+  <script>
+    // Tu código JS que controla la lógica de recetas
+  </script>
 </body>
 </html>

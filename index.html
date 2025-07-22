@@ -4,10 +4,206 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mis Recetas 💕</title>
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="estilos.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+  <style>
+     }
+    /* --- CSS completo con mejoras responsive --- */
+    body {
+      font-family: 'Quicksand', sans-serif;
+      background-color: #ffeef3;
+      margin: 0;
+      padding: 0;
+    }
+    h1 {
+      text-align: center;
+      color: #d6336c;
+      font-family: 'Pacifico', cursive;
+      margin: 20px 0;
+      font-size: 2.2em;
+    }
+    .categoria {
+      margin: 30px 20px;
+    }
+    .categoria h2 {
+      color: #ff4d88;
+      font-family: 'Pacifico', cursive;
+      margin-bottom: 10px;
+    }
+    .recetas-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+    .receta-card {
+      background-color: #fff;
+      border-radius: 20px;
+      padding: 15px;
+      width: 200px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      text-align: center;
+    }
+    .receta-card:hover {
+      transform: scale(1.03);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+    }
+    .receta-card h3 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 18px;
+      color: #e6005c;
+    }
+    .agregar-btn {
+      background-color: #ff66a3;
+      color: white;
+      border: none;
+      border-radius: 20px;
+      padding: 10px 20px;
+      margin-top: 10px;
+      cursor: pointer;
+      font-size: 16px;
+      font-family: 'Quicksand', sans-serif;
+    }
+    .agregar-btn:hover {
+      background-color: #ff3385;
+    }
+    .detalle-receta {
+      display: none;
+      background-color: #fff;
+      border-radius: 20px;
+      padding: 25px;
+      margin: 20px auto;
+      max-width: 600px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      position: relative;
+    }
+    .detalle-receta h2 {
+      font-family: 'Pacifico', cursive;
+      color: #c2185b;
+      font-size: 26px;
+      text-align: center;
+    }
+    ul {
+      padding-left: 0;
+      list-style: none;
+    }
+    ul li {
+      margin-bottom: 6px;
+      font-size: 15px;
+    }
+    .volver-btn,
+    .editar-btn,
+    .eliminar-btn {
+      background-color: #ff66a3;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 15px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 16px;
+      margin-top: 10px;
+      margin-right: 10px;
+    }
+    .eliminar-btn {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      padding: 6px 10px;
+      font-size: 14px;
+    }
+    .volver-btn:hover,
+    .editar-btn:hover,
+    .eliminar-btn:hover {
+      background-color: #e6005c;
+    }
+    .formulario-container {
+      background-color: #fff;
+      border-radius: 20px;
+      padding: 25px;
+      margin: 20px auto;
+      max-width: 500px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+    .formulario-container h2 {
+      font-family: 'Pacifico', cursive;
+      color: #c2185b;
+      font-size: 24px;
+      text-align: center;
+    }
+    form label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+      color: #d6336c;
+    }
+    form input[type="text"],
+    form textarea {
+      width: 100%;
+      padding: 8px;
+      border-radius: 12px;
+      border: 1px solid #ddd;
+      margin-top: 5px;
+      font-family: 'Quicksand', sans-serif;
+      resize: vertical;
+    }
+    .guardar-btn,
+    .cancelar-btn {
+      margin-top: 20px;
+      margin-right: 10px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 15px;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    .guardar-btn {
+      background-color: #ff66a3;
+      color: white;
+    }
+    .cancelar-btn {
+      background-color: #ccc;
+      color: #333;
+    }
+    .guardar-btn:hover {
+      background-color: #e6005c;
+    }
+    .cancelar-btn:hover {
+      background-color: #aaa;
+    }
+
+    /* --- Mejoras para celulares --- */
+    @media (max-width: 600px) {
+      .recetas-container {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .receta-card {
+        width: 90% !important;
+        font-size: 18px;
+      }
+
+      .detalle-receta,
+      .formulario-container {
+        width: 95% !important;
+        padding: 20px;
+      }
+
+      .volver-btn,
+      .editar-btn,
+      .eliminar-btn,
+      .agregar-btn {
+        font-size: 18px !important;
+        padding: 12px 20px !important;
+      }
+
+      h1 {
+        font-size: 2.5em !important;
+      }
+    }
+  </style>
 </head>
 <body>
   <h1>Mis Recetas Favoritas 💖</h1>
@@ -61,7 +257,181 @@
   </div>
 
   <script>
-    // Tu código JS que controla la lógica de recetas
+    // JS para controlar la app (igual que antes)
+
+    let recetas = JSON.parse(localStorage.getItem("recetas")) || [
+      {
+        id: crypto.randomUUID(),
+        nombre: "Tarta de Frutilla 🍓",
+        categoria: "postres",
+        tiempo: "30 min",
+        ingredientes: ["1 masa de tarta", "250g frutillas", "Crema pastelera", "Azúcar"],
+        pasos: [
+          "Hornear la masa sola durante 10 min.",
+          "Rellenar con crema pastelera.",
+          "Colocar frutillas cortadas encima.",
+          "Espolvorear con azúcar y enfriar."
+        ]
+      },
+      {
+        id: crypto.randomUUID(),
+        nombre: "Sándwich de Atún 🥪",
+        categoria: "comidas",
+        tiempo: "10 min",
+        ingredientes: ["2 rebanadas de pan", "1 lata de atún", "Mayonesa", "Lechuga"],
+        pasos: [
+          "Mezclar el atún con mayonesa.",
+          "Untar sobre una rebanada de pan.",
+          "Agregar lechuga y cerrar.",
+          "Cortar en triángulos y servir."
+        ]
+      },
+      {
+        id: crypto.randomUUID(),
+        nombre: "Limonada fresca 🍋",
+        categoria: "bebidas",
+        tiempo: "5 min",
+        ingredientes: ["3 limones", "1 litro de agua", "Azúcar al gusto", "Hielo"],
+        pasos: [
+          "Exprimir los limones.",
+          "Mezclar con el agua y azúcar.",
+          "Agregar hielo y servir bien fría."
+        ]
+      }
+    ];
+
+    let recetaActual = null;
+
+    function guardarLocal() {
+      localStorage.setItem("recetas", JSON.stringify(recetas));
+    }
+
+    function mostrarRecetas() {
+      ["comidas", "postres", "bebidas"].forEach(cat => {
+        const contenedor = document.getElementById("lista-" + cat);
+        contenedor.innerHTML = "";
+      });
+
+      recetas.forEach(receta => {
+        const contenedor = document.getElementById("lista-" + receta.categoria);
+        const tarjeta = document.createElement("div");
+        tarjeta.className = "receta-card";
+        tarjeta.innerHTML = `<h3>${receta.nombre}</h3>`;
+        tarjeta.addEventListener("click", () => verReceta(receta.id));
+        contenedor.appendChild(tarjeta);
+      });
+    }
+
+    function verReceta(id) {
+      const receta = recetas.find(r => r.id === id);
+      recetaActual = receta;
+
+      document.getElementById("detalle-nombre").textContent = receta.nombre;
+      document.getElementById("detalle-tiempo").textContent = receta.tiempo;
+
+      const ulIng = document.getElementById("detalle-ingredientes");
+      ulIng.innerHTML = "";
+      receta.ingredientes.forEach(i => {
+        const li = document.createElement("li");
+        li.textContent = "🍓 " + i;
+        ulIng.appendChild(li);
+      });
+
+      const ulPasos = document.getElementById("detalle-pasos");
+      ulPasos.innerHTML = "";
+      receta.pasos.forEach(p => {
+        const li = document.createElement("li");
+        li.textContent = "📝 " + p;
+        ulPasos.appendChild(li);
+      });
+
+      document.getElementById("detalle-receta").style.display = "block";
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function cerrarDetalle() {
+      document.getElementById("detalle-receta").style.display = "none";
+      recetaActual = null;
+    }
+
+    function abrirFormulario(categoria) {
+      document.getElementById("formulario-container").style.display = "block";
+      document.getElementById("form-categoria").value = categoria;
+      document.getElementById("form-id").value = "";
+      document.getElementById("form-nombre").value = "";
+      document.getElementById("form-tiempo").value = "";
+      document.getElementById("form-ingredientes").value = "";
+      document.getElementById("form-pasos").value = "";
+      document.getElementById("formulario-titulo").textContent = "Agregar receta";
+    }
+
+    function cerrarFormulario() {
+      document.getElementById("formulario-container").style.display = "none";
+    }
+
+    function guardarReceta(event) {
+      event.preventDefault();
+
+      const id = document.getElementById("form-id").value || crypto.randomUUID();
+      const nuevaReceta = {
+        id,
+        nombre: document.getElementById("form-nombre").value.trim(),
+        categoria: document.getElementById("form-categoria").value,
+        tiempo: document.getElementById("form-tiempo").value.trim(),
+        ingredientes: document.getElementById("form-ingredientes").value.split(",").map(i => i.trim()).filter(i => i),
+        pasos: document.getElementById("form-pasos").value.split(";").map(p => p.trim()).filter(p => p)
+      };
+
+      const index = recetas.findIndex(r => r.id === id);
+      if (index >= 0) {
+        recetas[index] = nuevaReceta;
+      } else {
+        recetas.push(nuevaReceta);
+      }
+
+      guardarLocal();
+      mostrarRecetas();
+      cerrarFormulario();
+    }
+
+    function eliminarReceta() {
+      if (!recetaActual) return;
+      if (confirm("¿Seguro que querés borrar esta receta?")) {
+        recetas = recetas.filter(r => r.id !== recetaActual.id);
+        guardarLocal();
+        cerrarDetalle();
+        mostrarRecetas();
+      }
+    }
+
+    function editarReceta() {
+      if (!recetaActual) return;
+      abrirFormulario(recetaActual.categoria);
+      document.getElementById("formulario-titulo").textContent = "Editar receta";
+      document.getElementById("form-id").value = recetaActual.id;
+      document.getElementById("form-nombre").value = recetaActual.nombre;
+      document.getElementById("form-tiempo").value = recetaActual.tiempo;
+      document.getElementById("form-ingredientes").value = recetaActual.ingredientes.join(", ");
+      document.getElementById("form-pasos").value = recetaActual.pasos.join("; ");
+    }
+
+    document.querySelectorAll(".agregar-btn").forEach(btn =>
+      btn.addEventListener("click", () => abrirFormulario(btn.dataset.categoria))
+    );
+
+    document.getElementById("eliminar-receta").addEventListener("click", eliminarReceta);
+
+    document.getElementById("editar-receta").addEventListener("click", editarReceta);
+
+    document.getElementById("form-receta").addEventListener("submit", guardarReceta);
+
+    document.getElementById("cancelar-btn").addEventListener("click", cerrarFormulario);
+
+    document.getElementById("volver-btn").addEventListener("click", cerrarDetalle);
+
+    mostrarRecetas();
   </script>
 </body>
 </html>
+
+Así??

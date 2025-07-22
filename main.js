@@ -1,4 +1,5 @@
 // main.js
+
 let recetas = JSON.parse(localStorage.getItem("recetas")) || [
   {
     id: crypto.randomUUID(),
@@ -42,10 +43,12 @@ let recetas = JSON.parse(localStorage.getItem("recetas")) || [
 
 let recetaActual = null;
 
+// Guardar en localStorage
 function guardarLocal() {
   localStorage.setItem("recetas", JSON.stringify(recetas));
 }
 
+// Mostrar recetas en cada categoría
 function mostrarRecetas() {
   ["comidas", "postres", "bebidas"].forEach(cat => {
     const contenedor = document.getElementById("lista-" + cat);
@@ -62,6 +65,7 @@ function mostrarRecetas() {
   });
 }
 
+// Mostrar detalle de receta
 function verReceta(id) {
   const receta = recetas.find(r => r.id === id);
   recetaActual = receta;
@@ -89,41 +93,48 @@ function verReceta(id) {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
+// Cerrar detalle
 function cerrarDetalle() {
   document.getElementById("detalle-receta").style.display = "none";
+  recetaActual = null;
 }
 
-function abrirFormulario(cat) {
-  document.getElementById("formulario-receta").style.display = "block";
-  document.getElementById("form-categoria").value = cat;
+// Abrir formulario para agregar o editar receta
+function abrirFormulario(categoria) {
+  document.getElementById("formulario-container").style.display = "block";
+  document.getElementById("form-categoria").value = categoria;
   document.getElementById("form-id").value = "";
   document.getElementById("form-nombre").value = "";
   document.getElementById("form-tiempo").value = "";
   document.getElementById("form-ingredientes").value = "";
   document.getElementById("form-pasos").value = "";
-  document.getElementById("form-titulo").textContent = "Agregar Receta";
+  document.getElementById("formulario-titulo").textContent = "Agregar receta";
 }
 
+// Cerrar formulario
 function cerrarFormulario() {
-  document.getElementById("formulario-receta").style.display = "none";
+  document.getElementById("formulario-container").style.display = "none";
 }
 
-function guardarReceta() {
+// Guardar receta (nuevo o editado)
+function guardarReceta(event) {
+  event.preventDefault();
+
   const id = document.getElementById("form-id").value || crypto.randomUUID();
-  const nueva = {
+  const nuevaReceta = {
     id,
-    nombre: document.getElementById("form-nombre").value,
+    nombre: document.getElementById("form-nombre").value.trim(),
     categoria: document.getElementById("form-categoria").value,
-    tiempo: document.getElementById("form-tiempo").value,
-    ingredientes: document.getElementById("form-ingredientes").value.split(",").map(i => i.trim()),
-    pasos: document.getElementById("form-pasos").value.split(";").map(p => p.trim())
+    tiempo: document.getElementById("form-tiempo").value.trim(),
+    ingredientes: document.getElementById("form-ingredientes").value.split(",").map(i => i.trim()).filter(i => i),
+    pasos: document.getElementById("form-pasos").value.split(";").map(p => p.trim()).filter(p => p)
   };
 
   const index = recetas.findIndex(r => r.id === id);
   if (index >= 0) {
-    recetas[index] = nueva;
+    recetas[index] = nuevaReceta; // Editar
   } else {
-    recetas.push(nueva);
+    recetas.push(nuevaReceta); // Nuevo
   }
 
   guardarLocal();
@@ -131,6 +142,7 @@ function guardarReceta() {
   cerrarFormulario();
 }
 
+// Eliminar receta actual
 function eliminarReceta() {
   if (!recetaActual) return;
   if (confirm("¿Seguro que querés borrar esta receta?")) {
@@ -141,10 +153,11 @@ function eliminarReceta() {
   }
 }
 
+// Editar receta actual
 function editarReceta() {
   if (!recetaActual) return;
   abrirFormulario(recetaActual.categoria);
-  document.getElementById("form-titulo").textContent = "Editar Receta";
+  document.getElementById("formulario-titulo").textContent = "Editar receta";
   document.getElementById("form-id").value = recetaActual.id;
   document.getElementById("form-nombre").value = recetaActual.nombre;
   document.getElementById("form-tiempo").value = recetaActual.tiempo;
@@ -152,5 +165,17 @@ function editarReceta() {
   document.getElementById("form-pasos").value = recetaActual.pasos.join("; ");
 }
 
+// Event listeners para botones
+
+document.querySelectorAll(".agregar-btn").forEach(btn =>
+  btn.addEventListener("click", () => abrirFormulario(btn.dataset.categoria))
+);
+
+document.getElementById("eliminar-receta").addEventListener("click", eliminarReceta);
+
+document.getElementById("editar-receta").addEventListener("click", editarReceta);
+
+document.getElementById("form-receta").addEventListener("submit", guardarReceta);
+
+// Inicializar mostrando recetas
 mostrarRecetas();
-                          

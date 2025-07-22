@@ -1,0 +1,107 @@
+/* Fuente general */
+body {
+  font-family: 'Quicksand', sans-serif;
+  background-color: #ffeef3; /* Fondo liso rosa claro */
+  margin: 0;
+  padding: 0;
+}
+
+/* Título principal */
+h1 {
+  text-align: center;
+  color: #d6336c;
+  font-family: 'Pacifico', cursive;
+  margin: 20px 0;
+}
+
+/* Secciones por categoría */
+.categoria {
+  margin: 30px 20px;
+}
+
+/* Título de cada categoría */
+.categoria h2 {
+  color: #ff4d88;
+  font-family: 'Pacifico', cursive;
+  margin-bottom: 10px;
+}
+
+/* Contenedor de tarjetas */
+.recetas-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+/* Tarjetas de receta */
+.receta-card {
+  background-color: #fff;
+  border-radius: 20px;
+  padding: 15px;
+  width: 200px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+/* Efecto hover en la tarjeta */
+.receta-card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+/* Nombre de la receta */
+.receta-card h3 {
+  font-family: 'Pacifico', cursive;
+  font-size: 18px;
+  color: #e6005c;
+  text-align: center;
+}
+
+/* Ficha de detalle */
+.detalle-receta {
+  display: none;
+  background-color: #fff;
+  border-radius: 20px;
+  padding: 25px;
+  margin: 20px auto;
+  max-width: 600px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  position: relative;
+}
+
+/* Título de la ficha */
+.detalle-receta h2 {
+  font-family: 'Pacifico', cursive;
+  color: #c2185b;
+  font-size: 26px;
+}
+
+/* Botón de volver */
+.volver-btn {
+  margin-top: 15px;
+  background-color: #ff4d88;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 15px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.volver-btn:hover {
+  background-color: #e6005c;
+}
+
+/* Quitar viñetas de listas */
+ul {
+  padding-left: 0;
+  list-style: none;
+}
+
+/* Estilo individual de ítems */
+ul li {
+  margin-bottom: 6px;
+  font-size: 15px;
+}

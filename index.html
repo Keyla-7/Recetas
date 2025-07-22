@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mis Recetas 💕</title>
   <style>
-    /* --- Pega acá todo el CSS que te pasé antes --- */
+    /* --- CSS completo con mejoras responsive --- */
     body {
       font-family: 'Quicksand', sans-serif;
       background-color: #ffeef3;
@@ -170,21 +170,35 @@
     .cancelar-btn:hover {
       background-color: #aaa;
     }
+
+    /* --- Mejoras para celulares --- */
     @media (max-width: 600px) {
       .recetas-container {
         flex-direction: column;
         align-items: center;
       }
+
       .receta-card {
-        width: 90%;
+        width: 90% !important;
+        font-size: 18px;
       }
+
       .detalle-receta,
       .formulario-container {
-        width: 90%;
+        width: 95% !important;
+        padding: 20px;
       }
-      .eliminar-btn {
-        top: 10px;
-        right: 10px;
+
+      .volver-btn,
+      .editar-btn,
+      .eliminar-btn,
+      .agregar-btn {
+        font-size: 18px !important;
+        padding: 12px 20px !important;
+      }
+
+      h1 {
+        font-size: 2.5em !important;
       }
     }
   </style>
@@ -241,7 +255,7 @@
   </div>
 
   <script>
-    // JS que controla toda la app (igual que te pasé antes pero inline para prueba)
+    // JS para controlar la app (igual que antes)
 
     let recetas = JSON.parse(localStorage.getItem("recetas")) || [
       {

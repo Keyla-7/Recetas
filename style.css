@@ -163,8 +163,12 @@ form textarea {
   background-color: #aaa;
 }
 
-/* Mejoras para celulares */
 @media (max-width: 600px) {
+  h1 {
+    font-size: 4em !important;
+    margin-bottom: 30px;
+  }
+
   .recetas-container {
     flex-direction: column;
     align-items: center;
@@ -172,30 +176,31 @@ form textarea {
 
   .receta-card {
     width: 95% !important;
-    font-size: 22px;
-    padding: 20px;
+    font-size: 28px !important;
+    padding: 30px !important;
+  }
+
+  .receta-card h3 {
+    font-size: 26px !important;
   }
 
   .detalle-receta,
   .formulario-container {
     width: 98% !important;
-    padding: 25px;
+    padding: 35px !important;
+    font-size: 22px !important;
   }
 
-  h1 {
-    font-size: 3em !important;
-    margin-bottom: 25px;
+  ul li {
+    font-size: 20px !important;
   }
 
   .volver-btn,
   .editar-btn,
   .eliminar-btn,
   .agregar-btn {
-    font-size: 20px !important;
-    padding: 15px 25px !important;
-  }
-
-  ul li {
-    font-size: 18px !important;
+    font-size: 24px !important;
+    padding: 20px 30px !important;
   }
 }
+

@@ -1,7 +1,9 @@
-/* Fuente general */
+/* style.css */
+
+/* Fuentes generales */
 body {
   font-family: 'Quicksand', sans-serif;
-  background-color: #ffeef3; /* Fondo liso rosa claro */
+  background-color: #ffeef3;
   margin: 0;
   padding: 0;
 }
@@ -12,28 +14,28 @@ h1 {
   color: #d6336c;
   font-family: 'Pacifico', cursive;
   margin: 20px 0;
+  font-size: 2.2em;
 }
 
-/* Secciones por categoría */
+/* Sección de cada categoría */
 .categoria {
   margin: 30px 20px;
 }
 
-/* Título de cada categoría */
 .categoria h2 {
   color: #ff4d88;
   font-family: 'Pacifico', cursive;
   margin-bottom: 10px;
 }
 
-/* Contenedor de tarjetas */
+/* Contenedor de tarjetas de recetas */
 .recetas-container {
   display: flex;
   flex-wrap: wrap;
   gap: 15px;
 }
 
-/* Tarjetas de receta */
+/* Tarjeta de receta */
 .receta-card {
   background-color: #fff;
   border-radius: 20px;
@@ -44,13 +46,11 @@ h1 {
   transition: transform 0.2s, box-shadow 0.2s;
 }
 
-/* Efecto hover en la tarjeta */
 .receta-card:hover {
   transform: scale(1.03);
   box-shadow: 0 6px 12px rgba(0,0,0,0.15);
 }
 
-/* Nombre de la receta */
 .receta-card h3 {
   font-family: 'Pacifico', cursive;
   font-size: 18px;
@@ -58,7 +58,24 @@ h1 {
   text-align: center;
 }
 
-/* Ficha de detalle */
+/* Botón de agregar receta */
+.agregar-btn {
+  background-color: #ff66a3;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 10px 20px;
+  margin-top: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  font-family: 'Quicksand', sans-serif;
+}
+
+.agregar-btn:hover {
+  background-color: #ff3385;
+}
+
+/* Detalle de receta */
 .detalle-receta {
   display: none;
   background-color: #fff;
@@ -70,38 +87,134 @@ h1 {
   position: relative;
 }
 
-/* Título de la ficha */
 .detalle-receta h2 {
   font-family: 'Pacifico', cursive;
   color: #c2185b;
   font-size: 26px;
 }
 
-/* Botón de volver */
-.volver-btn {
-  margin-top: 15px;
-  background-color: #ff4d88;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 15px;
-  cursor: pointer;
-  font-weight: bold;
-  font-size: 16px;
-}
-
-.volver-btn:hover {
-  background-color: #e6005c;
-}
-
-/* Quitar viñetas de listas */
 ul {
   padding-left: 0;
   list-style: none;
 }
 
-/* Estilo individual de ítems */
 ul li {
   margin-bottom: 6px;
   font-size: 15px;
+}
+
+/* Botones */
+.volver-btn,
+.editar-btn,
+.eliminar-btn {
+  background-color: #ff66a3;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 15px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 16px;
+  margin-top: 10px;
+  margin-right: 10px;
+}
+
+.eliminar-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  padding: 6px 10px;
+  font-size: 14px;
+}
+
+.volver-btn:hover,
+.editar-btn:hover,
+.eliminar-btn:hover {
+  background-color: #e6005c;
+}
+
+/* Formulario */
+.formulario-container {
+  background-color: #fff;
+  border-radius: 20px;
+  padding: 25px;
+  margin: 20px auto;
+  max-width: 500px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.formulario-container h2 {
+  font-family: 'Pacifico', cursive;
+  color: #c2185b;
+  font-size: 24px;
+}
+
+form label {
+  display: block;
+  margin-top: 15px;
+  font-weight: bold;
+  color: #d6336c;
+}
+
+form input[type="text"],
+form textarea {
+  width: 100%;
+  padding: 8px;
+  border-radius: 12px;
+  border: 1px solid #ddd;
+  margin-top: 5px;
+  font-family: 'Quicksand', sans-serif;
+  resize: vertical;
+}
+
+.guardar-btn,
+.cancelar-btn {
+  margin-top: 20px;
+  margin-right: 10px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 15px;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.guardar-btn {
+  background-color: #ff66a3;
+  color: white;
+}
+
+.cancelar-btn {
+  background-color: #ccc;
+  color: #333;
+}
+
+.guardar-btn:hover {
+  background-color: #e6005c;
+}
+
+.cancelar-btn:hover {
+  background-color: #aaa;
+}
+
+/* Responsive: para celular */
+@media (max-width: 600px) {
+  .recetas-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .receta-card {
+    width: 90%;
+  }
+
+  .detalle-receta,
+  .formulario-container {
+    width: 90%;
+  }
+
+  .eliminar-btn {
+    top: 10px;
+    right: 10px;
+  }
 }

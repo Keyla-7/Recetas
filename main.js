@@ -1,5 +1,7 @@
-const recetas = [
+// main.js
+let recetas = JSON.parse(localStorage.getItem("recetas")) || [
   {
+    id: crypto.randomUUID(),
     nombre: "Tarta de Frutilla 🍓",
     categoria: "postres",
     tiempo: "30 min",
@@ -12,6 +14,7 @@ const recetas = [
     ]
   },
   {
+    id: crypto.randomUUID(),
     nombre: "Sándwich de Atún 🥪",
     categoria: "comidas",
     tiempo: "10 min",
@@ -24,6 +27,7 @@ const recetas = [
     ]
   },
   {
+    id: crypto.randomUUID(),
     nombre: "Limonada fresca 🍋",
     categoria: "bebidas",
     tiempo: "5 min",
@@ -36,18 +40,32 @@ const recetas = [
   }
 ];
 
+let recetaActual = null;
+
+function guardarLocal() {
+  localStorage.setItem("recetas", JSON.stringify(recetas));
+}
+
 function mostrarRecetas() {
+  ["comidas", "postres", "bebidas"].forEach(cat => {
+    const contenedor = document.getElementById("lista-" + cat);
+    contenedor.innerHTML = "";
+  });
+
   recetas.forEach(receta => {
     const contenedor = document.getElementById("lista-" + receta.categoria);
     const tarjeta = document.createElement("div");
     tarjeta.className = "receta-card";
     tarjeta.innerHTML = `<h3>${receta.nombre}</h3>`;
-    tarjeta.addEventListener("click", () => verReceta(receta));
+    tarjeta.addEventListener("click", () => verReceta(receta.id));
     contenedor.appendChild(tarjeta);
   });
 }
 
-function verReceta(receta) {
+function verReceta(id) {
+  const receta = recetas.find(r => r.id === id);
+  recetaActual = receta;
+
   document.getElementById("detalle-nombre").textContent = receta.nombre;
   document.getElementById("detalle-tiempo").textContent = receta.tiempo;
 
@@ -75,4 +93,64 @@ function cerrarDetalle() {
   document.getElementById("detalle-receta").style.display = "none";
 }
 
+function abrirFormulario(cat) {
+  document.getElementById("formulario-receta").style.display = "block";
+  document.getElementById("form-categoria").value = cat;
+  document.getElementById("form-id").value = "";
+  document.getElementById("form-nombre").value = "";
+  document.getElementById("form-tiempo").value = "";
+  document.getElementById("form-ingredientes").value = "";
+  document.getElementById("form-pasos").value = "";
+  document.getElementById("form-titulo").textContent = "Agregar Receta";
+}
+
+function cerrarFormulario() {
+  document.getElementById("formulario-receta").style.display = "none";
+}
+
+function guardarReceta() {
+  const id = document.getElementById("form-id").value || crypto.randomUUID();
+  const nueva = {
+    id,
+    nombre: document.getElementById("form-nombre").value,
+    categoria: document.getElementById("form-categoria").value,
+    tiempo: document.getElementById("form-tiempo").value,
+    ingredientes: document.getElementById("form-ingredientes").value.split(",").map(i => i.trim()),
+    pasos: document.getElementById("form-pasos").value.split(";").map(p => p.trim())
+  };
+
+  const index = recetas.findIndex(r => r.id === id);
+  if (index >= 0) {
+    recetas[index] = nueva;
+  } else {
+    recetas.push(nueva);
+  }
+
+  guardarLocal();
+  mostrarRecetas();
+  cerrarFormulario();
+}
+
+function eliminarReceta() {
+  if (!recetaActual) return;
+  if (confirm("¿Seguro que querés borrar esta receta?")) {
+    recetas = recetas.filter(r => r.id !== recetaActual.id);
+    guardarLocal();
+    cerrarDetalle();
+    mostrarRecetas();
+  }
+}
+
+function editarReceta() {
+  if (!recetaActual) return;
+  abrirFormulario(recetaActual.categoria);
+  document.getElementById("form-titulo").textContent = "Editar Receta";
+  document.getElementById("form-id").value = recetaActual.id;
+  document.getElementById("form-nombre").value = recetaActual.nombre;
+  document.getElementById("form-tiempo").value = recetaActual.tiempo;
+  document.getElementById("form-ingredientes").value = recetaActual.ingredientes.join(", ");
+  document.getElementById("form-pasos").value = recetaActual.pasos.join("; ");
+}
+
 mostrarRecetas();
+                          

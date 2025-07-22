@@ -42,8 +42,8 @@ h1 {
   box-shadow: 0 8px 18px rgba(0,0,0,0.2);
 }
 .receta-card h3 {
-  font-family: 'Great Vibes', cursive !important;
-  font-size: 30px;
+  font-family: 'Pacifico', cursive;
+  font-size: 26px;
   color: #e6005c;
   margin: 0;
 }
@@ -209,7 +209,7 @@ form textarea {
   }
   .receta-card h3 {
     font-size: 30px !important;
-    font-family: 'Great Vibes', cursive !important;
+    font-family: 'Great Vibes', cursive;
   }
   .detalle-receta,
   .formulario-container {

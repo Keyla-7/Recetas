@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mis Recetas</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Quicksand', sans-serif;
+      background-color: #ffe6ec;
+      margin: 0;
+      padding: 0;
+    }
+
+    h1 {
+      text-align: center;
+      color: #d6336c;
+      font-family: 'Pacifico', cursive;
+      margin-top: 20px;
+    }
+
+    .categoria {
+      margin: 30px 20px;
+    }
+
+    .categoria h2 {
+      color: #ff4d88;
+      font-family: 'Pacifico', cursive;
+      margin-bottom: 10px;
+    }
+
+    .recetas-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .receta-card {
+      background-color: #fff;
+      border-radius: 20px;
+      padding: 15px;
+      width: 200px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .receta-card:hover {
+      transform: scale(1.03);
+      box-shadow: 0 6px 10px rgba(0,0,0,0.15);
+    }
+
+    .receta-card h3 {
+      font-family: 'Pacifico', cursive;
+      font-size: 18px;
+      color: #e6005c;
+      text-align: center;
+    }
+
+    .detalle-receta {
+      display: none;
+      background-color: #fff;
+      border-radius: 20px;
+      padding: 25px;
+      margin: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      position: relative;
+    }
+
+    .detalle-receta h2 {
+      font-family: 'Pacifico', cursive;
+      color: #c2185b;
+    }
+
+    .detalle-receta ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .volver-btn {
+      margin-top: 15px;
+      background-color: #ff4d88;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 15px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .volver-btn:hover {
+      background-color: #e6005c;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🍓 Mis Recetas</h1>
+
+  <div class="categoria" id="comidas">
+    <h2>🍽️ Comidas</h2>
+    <div class="recetas-container" id="lista-comidas"></div>
+  </div>
+
+  <div class="categoria" id="postres">
+    <h2>🍰 Postres</h2>
+    <div class="recetas-container" id="lista-postres"></div>
+  </div>
+
+  <div class="categoria" id="bebidas">
+    <h2>🥤 Bebidas</h2>
+    <div class="recetas-container" id="lista-bebidas"></div>
+  </div>
+
+  <div class="detalle-receta" id="detalle-receta">
+    <h2 id="detalle-nombre"></h2>
+    <p><strong>Tiempo:</strong> <span id="detalle-tiempo"></span></p>
+    <p><strong>Ingredientes:</strong></p>
+    <ul id="detalle-ingredientes"></ul>
+    <p><strong>Preparación:</strong></p>
+    <ul id="detalle-pasos"></ul>
+    <button class="volver-btn" onclick="cerrarDetalle()">⬅️ Volver</button>
+  </div>
+
+  <script>
+    const recetas = [
+      {
+        nombre: "Tarta de Frutilla 🍓",
+        categoria: "postres",
+        tiempo: "30 min",
+        ingredientes: ["1 masa de tarta", "250g frutillas", "Crema pastelera", "Azúcar"],
+        pasos: [
+          "Hornear la masa sola durante 10 min.",
+          "Rellenar con crema pastelera.",
+          "Colocar frutillas cortadas encima.",
+          "Espolvorear con azúcar y enfriar."
+        ]
+      }
+    ];
+
+    function mostrarRecetas() {
+      recetas.forEach(receta => {
+        const contenedor = document.getElementById("lista-" + receta.categoria);
+        const tarjeta = document.createElement("div");
+        tarjeta.className = "receta-card";
+        tarjeta.innerHTML = `<h3>${receta.nombre}</h3>`;
+        tarjeta.addEventListener("click", () => verReceta(receta));
+        contenedor.appendChild(tarjeta);
+      });
+    }
+
+    function verReceta(receta) {
+      document.getElementById("detalle-nombre").textContent = receta.nombre;
+      document.getElementById("detalle-tiempo").textContent = receta.tiempo;
+
+      const ulIngredientes = document.getElementById("detalle-ingredientes");
+      ulIngredientes.innerHTML = "";
+      receta.ingredientes.forEach(ing => {
+        const li = document.createElement("li");
+        li.textContent = "🍓 " + ing;
+        ulIngredientes.appendChild(li);
+      });
+
+      const ulPasos = document.getElementById("detalle-pasos");
+      ulPasos.innerHTML = "";
+      receta.pasos.forEach(p => {
+        const li = document.createElement("li");
+        li.textContent = "📝 " + p;
+        ulPasos.appendChild(li);
+      });
+
+      document.getElementById("detalle-receta").style.display = "block";
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function cerrarDetalle() {
+      document.getElementById("detalle-receta").style.display = "none";
+    }
+
+    mostrarRecetas();
+  </script>
+</body>
+</html>
